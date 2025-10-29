@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container-fluid">
+     <img src="{{ category.image.url }}" alt="{{ category.name }}" class="img-fluid" style="max-height:400px; width:100%;">
+        <h3>{{category.name}}</h3>
+        <p>{{category.description}}</p>
+
+    </div>
+<div class="container">
+
+
+    <!-- Product List -->
+    <div class="row special-list">
+        {% for j in category.products.all %}
+        <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+            <div class="products-single fix">
+                <div class="box-img-hover">
+                    <div class="type-lb">
+                        <p class="sale">Sale</p>
+                    </div>
+                    <img src="{{ j.image.url }}"  alt="{{ j.name }}" style="height: 250px; width: 100%; object-fit: cover;">
+                    <div class="mask-icon">
+                        <ul>
+                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
+                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                        </ul>
+                        <a class="cart" href="#">Add to Cart</a>
+                    </div>
+                </div>
+                <div class="why-text text-center mt-2">
+                    <h4>{{ j.name }}</h4>
+                    <h5>₹{{ j.price }}</h5>
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}
