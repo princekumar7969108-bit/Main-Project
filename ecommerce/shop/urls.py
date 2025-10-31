@@ -23,6 +23,12 @@ app_name="shop"
 urlpatterns = [
     path('', views.Categories.as_view(),name='categories'),
     path('products/<int:i>', views. Products.as_view(),name='products'),
+    path('productdetail/<int:i>', views. ProductDetail.as_view(),name='productdetail'),
+    path('register', views.Register.as_view(), name='register'),
+    path('login', views.Login.as_view(), name='login'),
+    path('logout', views.Logout.as_view(), name='logout'),
+    path('adminpage', views.Admin.as_view(), name='adminpage'),
+
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

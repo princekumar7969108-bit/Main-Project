@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<h2>DETAIL PAGE</h2>
+  <!-- Start All Title Box -->
+    <div class="all-title-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Login</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">ABOUT US</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="container border border-3 border-secondary p-5 mt-5 text-center">
+<form method="post">
+    {% csrf_token %}
+     {{form|crispy}}
+     <input type="submit">
+    </form>
+</div>
+{% endblock %}
