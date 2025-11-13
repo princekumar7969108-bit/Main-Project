@@ -28,6 +28,9 @@ urlpatterns = [
     path('login', views.Login.as_view(), name='login'),
     path('logout', views.Logout.as_view(), name='logout'),
     path('adminpage', views.Admin.as_view(), name='adminpage'),
+    path('addcategory', views.AddCategory.as_view(), name='addcategory'),
+    path('addproduct', views.AddProducts.as_view(), name='addproduct'),
+    path('addstock/<int:i>', views.Stock.as_view(), name='addstock'),
 
 ]
 if settings.DEBUG:

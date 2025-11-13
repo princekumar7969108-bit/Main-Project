@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+  <!-- Start All Title Box -->
+    <div class="all-title-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="text-center">Add Stock</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">ABOUT US</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="container border border-3 border-secondary p-5 mt-5 text-center">
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+     {{stock|crispy}}
+     <input type="submit">
+    </form>
+</div>
+{% endblock %}

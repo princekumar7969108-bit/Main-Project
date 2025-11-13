@@ -18,10 +18,17 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-
+from . import views
 app_name="cart"
 urlpatterns = [
-    # path('',),
+    path('addtocart/<int:i>',views.AddtoCart.as_view(),name="addtocart"),
+    path('cartview',views.CartView.as_view(),name='cartview'),
+    path('minus/<int:i>',views.RemoveOne.as_view(),name="minus"),
+    path('remove/<int:i>',views.Remove.as_view(),name="remove"),
+    path('checkout', views.Checkout.as_view(), name='checkout'),
+    path('payment_success/<i>', views.Payment_success.as_view(), name='payment_success'),
+    path('your_orders', views. Yourorders.as_view(), name='your_orders'),
+
 ]
 
 

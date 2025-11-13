@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.views import View
 from . models import Category_items,Product
-from .forms import SignupForm,LoginForm
+from .forms import SignupForm,LoginForm,CategoryForm,ProductForm,StockForm
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 # Create your views here.
@@ -70,9 +70,52 @@ class Login(View):
 class Logout(View):
   def get(self,request):
       logout(request)
-      return render('shop:login')
+      return redirect('shop:login')
 
 class Admin(View):
    def get(self, request):
       return render(request,'adminpage.html')
 
+class AddCategory(View):
+    def get(self,request):
+     form_instance=CategoryForm()
+     context={'form':form_instance}
+     return render(request,'addcategory.html',context)
+
+    def post(self,request):
+        form_instance=CategoryForm(request.POST,request.FILES)
+        if form_instance.is_valid():
+            form_instance.save()
+            return redirect('shop:categories')
+        else:
+            print('error')
+            return render(request, 'addcategory.html', {'form': form_instance})
+
+
+class AddProducts(View):
+    def get(self,request):
+     form_instance=ProductForm()
+     context={'form':form_instance}
+     return render(request,'addproduct.html',context)
+
+    def post(self,request):
+        form_instance=ProductForm(request.POST,request.FILES)
+        if form_instance.is_valid():
+            form_instance.save()
+            return redirect('shop:categories')
+        else:
+            print('error')
+            return render(request, 'addproduct.html', {'form': form_instance})
+class Stock(View):
+    def get(self,request,i):
+        s=Product.objects.get(id=i)
+        form_instance=StockForm(instance=s)
+        context={'stock':form_instance}
+        return render(request,'addstock.html',context)
+
+    def post(self, request, i):
+        s = Product.objects.get(id=i)
+        form_instance = StockForm(request.POST, instance=s)
+        if (form_instance.is_valid()):
+            form_instance.save()
+            return redirect('shop:categories')
